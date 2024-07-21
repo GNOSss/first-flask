@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jinja Test Page</title>
+    <style>
+        .aaa {font-weight: 700;}
+        .bbb {color: red;}
+        .sub {color: blue;}
+        .font-sm {font-size: 0.9rem;}
+    </style>
+</head>
+<body>
+ 
+
+    {% set title = 'TTT' %}
+    <div>Jinja Test : {{title}}</div>
+
+    <hr>
+    <ul>
+        {% for rank, title, name, hide, ref in lst2 recursive %}
+        <li>
+            {{title}}: {{name}}
+            {% if ref %}
+            <ul class="sub">
+                {{loop(ref)}}
+            </ul>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    </hr>
+
+
+
+    <hr>
+    <ul>
+        {% for rank, title, name, hide, ref in lst2 recursive %}
+        <li>
+            {{title}}: {{name}}
+            <ul class="sub">
+                {% for rank, title, name, hide, ref in ref %}
+                    <li>{{title}} : {{name}}</li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% endfor %}
+    </ul>
+    </hr>
+
+
+    <hr>
+    <ul>
+        {% for nav in navs recursive %}
+        <li>
+            <a href="{{nav.url | e}}">{{nav.title}} - {{loop.depth}}</a>
+            {%- if nav.children -%}
+            <ul class="{% if loop.depth != 1%} font=sm {% endif %}">
+                {{loop(nav.children)}}
+            </ul>
+            {%- endif -%}
+        </li>
+        {% endfor %}
+    </ul>
+    </hr>
+
+
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jinja Test Page</title>
+    <link rel ="stylesheet" href="{{url_for('static', filename='css/style.css') }}"">
+    <style>
+        .aaa {font-weight: 700;}
+        .bbb {color: red;}
+        .ccc {color: blue;}
+        .font-sm {font-size: 0.9rem;}
+    </style>
+</head>
+<body>
+    <h1>Jinja Test : {{title}} - {{mu}}</h1>
+    <hr>
+    {{"{SS} flask"}}
+    {{ "<strog>Strong</strog>"}}
+    <hr>
+
+    <div>Jinja Test 2 : {{title2}}</div>
+
+
+    <hr>
+    <ul>
+        {% for rank, title, name, hide, ref in lst2 recursive %}
+        <li>
+            {{title}}: {{name}}
+            <ul class="sub">{{loop(ref)}}</ul>
+        </li>
+        {% endfor %}
+    </ul>
+    </hr>
+
+
+    <pre>
+        {% raw %}
+        {% if True %}
+        TTT
+        {% endif %}
+        {% endraw %}
+
+        ttt 한글
+        {%- if True -%}
+        TTT
+        {%- endif -%}qqq
+    </pre>
+
+    <ul>
+        {% for item in lst %}
+            <li>{{item[0]}}: {{item[1]}}</li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        {% for title,name in lst %}
+            <li class = "{{loop.cycle('aaa','bbb')}}">{{title}}: {{name}} - {{loop.index}}번째</li>
+        {%else%}
+            <li>데이터가 없습니다.</li>
+        {% endfor %}
+    </ul> 
+
+    <ul>
+        {% for name in pds %}
+            {% if name|length > 5 %}
+                <li>{{name}}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+    
+
+</body>
+</html>
