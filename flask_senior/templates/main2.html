@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title%} tititit {%endblock%}
+
+
+{% block section%}
+<div> 
+    {{super()}}
+    tititittttt
+    <div>
+        <ul>
+            {% for rets in ret %}
+                <li>{{rets.id}} . {{rets.email}} . {{rets.nickname}} . </li>
+            {% else %}
+                <li>There is no users.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div>
+    {% for user in ret %}
+    <li>
+        {{ user.id }} . {{ user.email }} . {{ user.nickname }} 
+        {% if user.user_countries %}
+            - Countries: 
+            {% for country in user.user_countries %}
+                {{ country.country }} ({{ country.countrycode }})
+            {% endfor %}
+        {% endif %}
+    </li>
+    {% else %}
+        <li>There are no users.</li>
+    {% endfor %}
+    </div>
+    
+</div>
+{%endblock%}
+
+{% block outer_block%}
+    <p>11111111</p>
+    {{super()}}
+    {% block inner_block%} bbbbfbfbfbfb {%endblock inner_block%}
+{% endblock outer_block%}
+

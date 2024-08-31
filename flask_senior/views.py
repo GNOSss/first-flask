@@ -12,33 +12,42 @@ from sqlalchemy.orm import subqueryload, joinedload
 
 
 @app.route('/sqljoin')
-def sqljoin():
-    session = db_session()
+# def sqljoin():
+#     session = db_session()
     
-    try:
+#     try:
         
         
-        # 예제: User 데이터 삽입
-        new_user = User(email='kbr111111@example.com', passwd='password123', nickname='Boster')
-        session.add(new_user)  # 세션에 새로운 User 객체를 추가합니다.
-        session.flush()
+#         # 예제: User 데이터 삽입
+#         new_user = User(email='kbr111111@example.com', passwd='password123', nickname='Boster')
+#         session.add(new_user)  # 세션에 새로운 User 객체를 추가합니다.
+#         session.flush()
         
-        # 예제: UserCountry 데이터 삽입
-        new_country = User_country(countrycode='Purgio111111', country='Korea')
-        new_user.user_countries.append(new_country)
-        # session.add(new_country)  # 세션에 새로운 UserCountry 객체를 추가합니다.
+#         # 예제: UserCountry 데이터 삽입
+#         new_country = User_country(countrycode='Purgio111111', country='Korea')
+#         new_user.user_countries.append(new_country)
+#         # session.add(new_country)  # 세션에 새로운 UserCountry 객체를 추가합니다.
 
-        session.commit()
+#         session.commit()
         
-        # 성공 메시지 반환
-        return "Data inserted successfully"
+#         # 성공 메시지 반환
+#         return "Data inserted successfully"
     
-    except Exception as e:
-        session.rollback()
-        return f"An error occurred : {e}"
+#     except Exception as e:
+#         session.rollback()
+#         return f"An error occurred : {e}"
 
-    finally:
-        session.close()
+#     finally:
+#         session.close()
+        
+def sql_join_output():
+    # ret = User.query.filter(User.id > 70)
+    # return render_template('main2.html', ret=ret)
+    ret = User.query.options(joinedload(User.user_countries)).filter(User.id > 70).all()
+    return render_template('main2.html', ret=ret)
+    
+        
+
 
 
 # pre-load (sametime)
