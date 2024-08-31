@@ -9,8 +9,8 @@
     tititittttt
     <div>
         <ul>
-            {% for rets in ret %}
-                <li>{{rets.id}} . {{rets.email}} . {{rets.nickname}} . </li>
+            {% for rets in let %}
+                <li>{{rets.user.id}} . {{rets.user.email}} . {{rets.user.nickname}} . {{rets.country}}</li>
             {% else %}
                 <li>There is no users.</li>
             {% endfor %}
@@ -41,4 +41,3 @@
     {{super()}}
     {% block inner_block%} bbbbfbfbfbfb {%endblock inner_block%}
 {% endblock outer_block%}
-

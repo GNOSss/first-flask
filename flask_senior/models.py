@@ -69,6 +69,7 @@ class User(Base):
     email = Column(String(255), unique=True)
     passwd = Column(String(256))
     nickname = Column(String(31))
+
     
     def __init__(self, id=None, email=None, passwd=None, nickname='게스트'):
         self.id = id

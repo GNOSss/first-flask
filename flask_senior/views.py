@@ -43,8 +43,15 @@ from sqlalchemy.orm import subqueryload, joinedload
 def sql_join_output():
     # ret = User.query.filter(User.id > 70)
     # return render_template('main2.html', ret=ret)
+    
+    # models.py에서 relationships을 통해서 joinedload 없이 main2.html에 relationship컬럼인 user를 불러서 User테이블 정보 빼내기
+    let = User_country.query.filter(User_country.id > 70)
+    
+    # joinedload 문장을 통해서 User테이블에서 User_country 테이블 정보를 main2.html에 같이 출력하기 (User_country 역참조?)
     ret = User.query.options(joinedload(User.user_countries)).filter(User.id > 70).all()
-    return render_template('main2.html', ret=ret)
+    
+    
+    return render_template('main2.html', let=let, ret=ret)
     
         
 
