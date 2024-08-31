@@ -7,6 +7,40 @@
 <div> 
     {{super()}}
     tititittttt
+    <div>
+        <ul>
+            {% for user in users %}
+                <li>{{user.id}}.{{user.email}}.{{user.nickname}}</li>
+            {% else %}
+                <li>There is no users.</li>
+            {% endfor %}
+        </ul>
+    </div>
+    div>
+        <ul>
+            {% for h10ci in have10cities %}
+                <li>{{h10ci.code}} / {{h10ci.name}}</li>
+            {% else %}
+                <li>There is no users.</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div>
+        <ul>
+            {% for city in city_data %}
+                <li>{{city.name}} / {{city.countrycode}} / {{city.population|format_number}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div>
+        <ul>
+            {% for world in worlds %}
+                <li>{{world.code}} / {{world.name}} / {{world.continent}} / {{world.population|format_number}} </li>
+            {% else %}
+                <li>There is no world.</li>
+            {% endfor %}
+        </ul>
+    </div>
 </div>
 {%endblock%}
 
@@ -16,6 +50,3 @@
     {% block inner_block%} bbbbfbfbfbfb {%endblock inner_block%}
 {% endblock outer_block%}
 
-{% for item in  [1,2] %}
-    {% block title2 scoped %} <p>XKSLDKNDLKVN {{item}}</p> {% endblock%}
-{% endfor %}

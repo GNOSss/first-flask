@@ -7,13 +7,23 @@
     <title>Layout</title>
 </head>
 <body>
-    <h1>{% block title %}여기가 타이틀이에요{% endblock %} - Layout Title </h1>
+    <h1>{% block title %}SQL TEST{% endblock %} </h1>
 
-    <h2>{% block title2 %}{% endblock %} - Layout Title2</h2>
+    <h2>{% block title2 %}{% endblock %} - subqueryload, joinedload </h2>
 
     <div class="section">
         {% block section %} This is SECTion {% endblock %}
     </div>
+
+
+    <div>
+        <ul>
+            {% for tests in test %}
+                <li>{{tests.countries.continent}} / {{tests.name}} / {{tests.countrycode}} / {{tests.population|format_number}}  </li>
+            {% endfor %}
+        </ul>
+    </div>
+
 
     {% block outer_block %}
     <h3>
